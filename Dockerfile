@@ -9,15 +9,8 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-
-RUN useradd --create-home --uid 10001 exporter && \
-    mkdir -p /app/logs && \
-    chown -R exporter:exporter /app
-
-USER exporter
 
 CMD ["python", "main.py"]
