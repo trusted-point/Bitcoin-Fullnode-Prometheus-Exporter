@@ -63,9 +63,9 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=$HOME/bitcoin-fullnode-prometheus-exporter
-EnvironmentFile=$HOME/bitcoin-fullnode-prometheus-exporter/.env
-ExecStart=$HOME/bitcoin-fullnode-prometheus-exporter/venv/bin/python3 main.py
+WorkingDirectory=$HOME/Bitcoin-Fullnode-Prometheus-Exporter
+EnvironmentFile=$HOME/Bitcoin-Fullnode-Prometheus-Exporter/.env
+ExecStart=$HOME/Bitcoin-Fullnode-Prometheus-Exporter/venv/bin/python3 main.py
 Restart=on-failure
 
 [Install]
