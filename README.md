@@ -18,7 +18,12 @@ Prometheus exporter for monitoring Bitcoin Core full nodes through RPC.
 
 ## Configuration
 
-#### Copy the example environment file and update it with your settings:
+#### 1. Clone the repository:
+```bash
+git clone https://github.com/trusted-point/Bitcoin-Fullnode-Prometheus-Exporter.git
+cd Bitcoin-Fullnode-Prometheus-Exporter
+```
+#### 2. Copy the example environment file and update it with your settings:
 ```bash
 cp .env.example .env
 nano .env
@@ -32,27 +37,20 @@ CLI arguments override matching `.env` values. RPC username and password are env
 ```bash
 sudo apt update && sudo apt install python3 python3-venv git -y
 ```
-#### 2. Clone the repository:
-```bash
-git clone https://github.com/trusted-point/Bitcoin-Fullnode-Prometheus-Exporter.git
-cd Bitcoin-Fullnode-Prometheus-Exporter
-```
-#### 3. Activate virtual environment:
+#### 2. Activate virtual environment:
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
-#### 4. Install dependencies:
+#### 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-#### 5. View available flags:
+#### 4. View available flags:
 ```bash
 python3 main.py --help
 ```
-CLI arguments override matching `.env` values. RPC username and password are environment-only.
-
-#### 6. Create `/etc/systemd/system/bitcoin-fullnode-exporter.service`:
+#### 5. Create `/etc/systemd/system/bitcoin-fullnode-exporter.service`:
 ```bash
 sudo tee /etc/systemd/system/bitcoin-fullnode-exporter.service > /dev/null <<EOF
 [Unit]
@@ -72,7 +70,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 ```
-#### 7. Enable and start the service:
+#### 6. Enable and start the service:
 ```bash
 sudo systemctl daemon-reload && \
 sudo systemctl enable bitcoin-fullnode-exporter && \

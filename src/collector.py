@@ -41,7 +41,6 @@ from src.metrics import (
     BITCOIN_NODE_PEERS_TOTAL,
     BITCOIN_NODE_PROTOCOL_VERSION,
     BITCOIN_NODE_RPC_ACTIVE_CALLS,
-    BITCOIN_NODE_RPC_AVAILABLE,
     BITCOIN_NODE_SYNC_PROGRESS_RATIO,
     BITCOIN_NODE_UPTIME_SECONDS,
     BITCOIN_NODE_ACTIVE_WARNINGS,
@@ -58,9 +57,9 @@ from utils.logger import logger
 SATOSHIS_PER_BTC = 100_000_000
 
 HASH_RATE_WINDOWS = {
-    "difficulty_period": -1,
-    "1_block": 1,
+    "12_blocks": 12,
     "120_blocks": 120,
+    "2016_blocks": 2016,
 }
 
 FEE_ESTIMATION_TARGETS = (
