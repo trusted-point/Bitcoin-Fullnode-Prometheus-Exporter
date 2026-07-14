@@ -766,7 +766,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "bitcoin_node_index_synced{job=\"Bitcoin-Fullnode\", network=\"$network\", index=\"basic_block_filter_index\"}",
+          "expr": "bitcoin_node_index_synced{job=\"Bitcoin-Fullnode\", network=\"$network\", index=\"blockfilterindex\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1188,7 +1188,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "bitcoin_node_block_height{\n  job=\"Bitcoin-Fullnode\",\n  network=\"$network\"\n}\n-\nignoring(index)\nbitcoin_node_index_height{\n  job=\"Bitcoin-Fullnode\",\n  network=\"$network\",\n  index=\"basic_block_filter_index\"\n}",
+          "expr": "bitcoin_node_block_height{\n  job=\"Bitcoin-Fullnode\",\n  network=\"$network\"\n}\n-\nignoring(index)\nbitcoin_node_index_height{\n  job=\"Bitcoin-Fullnode\",\n  network=\"$network\",\n  index=\"blockfilterindex\"\n}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2284,13 +2284,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Bitcoin Core Fullnode",
   "uid": "ffs0x0p661bswc",
-  "version": 26,
+  "version": 27,
   "weekStart": ""
 }
