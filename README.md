@@ -1,6 +1,6 @@
 ![Hashi & Bitcoin Monitoring](assets/banner.png)
 
-# 🔥 Hashi & Bitcoin Monitoring 🔥
+# 📊 Hashi & Bitcoin Monitoring
 Prometheus and Grafana monitoring stack for Hashi nodes, with optional extended monitoring for the connected Bitcoin Core Fullnode.
 
 The repository includes:
@@ -47,7 +47,7 @@ Download the required `.json` file and import it into Grafana.
 | `hashi_alias="$hashi_alias"` | Auto-populated from `label_values(hashi_epoch, alias)` |
 | `bitcoin_alias="$bitcoin_alias"` | Auto-populated from `label_values(bitcoin_node_info, alias)` |
 
-## 📂 Bitcoin Fullnode Metrics Exporter 📂
+## 📂 Bitcoin Fullnode Metrics Exporter
 ### Features
 - Blockchain and sync metrics
 - Peer, network, mempool, RPC, index, fee, hash-rate, and memory metrics
