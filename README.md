@@ -82,7 +82,7 @@ chmod 600 .env
 
 #### 1. Update and install required packages:
 ```bash
-sudo apt update && sudo apt install python3 python3-venv git -y
+sudo apt update && sudo apt install python3 python3-venv -y
 ```
 #### 2. Create and activate the virtual environment:
 ```bash
