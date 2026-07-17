@@ -271,7 +271,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Number of connected Bitcoin P2P peers. A value of 0 means no peers are connected; check trusted peer configuration and network reachability.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -282,12 +281,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
-              },
-              {
                 "color": "#ffffff",
-                "value": 1
+                "value": null
               }
             ]
           }
@@ -300,7 +295,7 @@
         "x": 12,
         "y": 1
       },
-      "id": 40,
+      "id": 54,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -326,13 +321,83 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_kyoto_connected_peers{alias=\"$hashi_alias\"}",
+          "expr": "hashi_kyoto_best_height{alias=\"$hashi_alias\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "❗Kyoto ₿ Peers❗",
+      "title": "Kyoto ₿ Height",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Shows whether the node is a participating signer in the current MPC committee.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#ffffff",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 147,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_mpc_party_reduced_weight{alias=\"$hashi_alias\"} > bool 0",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "❗In Committee❗",
       "type": "stat"
     },
     {
@@ -380,7 +445,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
+        "x": 20,
         "y": 1
       },
       "id": 58,
@@ -416,76 +481,6 @@
         }
       ],
       "title": "Hashi Enabled",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "Indicates whether Hashi is currently reconfiguring the MPC committee. If it remains active for more than 10 minutes, check DKG/rotation logs for errors.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "bool"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 20,
-        "y": 1
-      },
-      "id": 60,
-      "options": {
-        "colorMode": "background_solid",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_reconfig_in_progress{alias=\"$hashi_alias\"}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "❗Reconfig in Progress❗",
       "type": "stat"
     },
     {
@@ -622,6 +617,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Number of connected Bitcoin P2P peers. A value of 0 means no peers are connected; check trusted peer configuration and network reachability.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -632,8 +628,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
+                "color": "red",
                 "value": null
+              },
+              {
+                "color": "#ffffff",
+                "value": 1
               }
             ]
           }
@@ -646,7 +646,7 @@
         "x": 8,
         "y": 5
       },
-      "id": 54,
+      "id": 40,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -672,13 +672,13 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_kyoto_best_height{alias=\"$hashi_alias\"}",
+          "expr": "hashi_kyoto_connected_peers{alias=\"$hashi_alias\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Kyoto ₿ Height",
+      "title": "❗Kyoto ₿ Peers❗",
       "type": "stat"
     },
     {
@@ -760,76 +760,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Indicates whether Guardian is enabled and reachable.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#ffffff",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "bool"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 16,
-        "y": 5
-      },
-      "id": 51,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_guardian_enabled{alias=\"$hashi_alias\"}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "❗Guardian Enabled | Online❗",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "Indicates whether the Kyoto Bitcoin light client is synced. If unsynced for more than 5 minutes, check Bitcoin RPC and P2P connectivity.",
       "fieldConfig": {
         "defaults": {
@@ -857,7 +787,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 20,
+        "x": 16,
         "y": 5
       },
       "id": 55,
@@ -900,7 +830,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "This node’s effective weight in the current MPC committee after committee weights are compressed into MPC shares.",
+      "description": "Indicates whether Hashi is currently reconfiguring the MPC committee. If it remains False for more than 10 minutes, check DKG/rotation logs for errors.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -919,20 +849,21 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "bool"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 0,
-        "y": 9
+        "x": 20,
+        "y": 5
       },
-      "id": 102,
+      "id": 60,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
+        "colorMode": "background_solid",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -955,13 +886,77 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_mpc_party_reduced_weight{alias=\"$hashi_alias\"}",
+          "expr": "hashi_reconfig_in_progress{alias=\"$hashi_alias\"} == bool 0",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "MPC Reduced Weight",
+      "title": "❗Reconfig Complete❗",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 9
+      },
+      "id": 90,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(hashi_proposals{alias=\"$hashi_alias\"})",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Active Proposals",
       "type": "stat"
     },
     {
@@ -1033,7 +1028,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "",
+      "description": "Number of presignatures currently available in the local MPC signing pool. A value of 0 means the node cannot sign.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1048,16 +1043,11 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 0.7
-              },
-              {
                 "color": "#ffffff",
-                "value": 0.9
+                "value": 1
               }
             ]
-          },
-          "unit": "percentunit"
+          }
         },
         "overrides": []
       },
@@ -1067,7 +1057,7 @@
         "x": 8,
         "y": 9
       },
-      "id": 130,
+      "id": 86,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1093,91 +1083,13 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(\n  increase(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"server\",\n      status=\"ok\"\n    }[$__range]\n  )\n)\n/\nsum(\n  increase(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__range]\n  )\n)",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Hashi RPC Success Rate",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.8
-              },
-              {
-                "color": "#ffffff",
-                "value": 0.99
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 9
-      },
-      "id": 121,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "(\n  sum(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\",\n        status=\"ok\"\n      }[$__rate_interval]\n    )\n  )\n  /\n  sum(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\"\n      }[$__rate_interval]\n    )\n  )\n)",
-          "hide": false,
+          "expr": "hashi_presig_pool_remaining{alias=\"$hashi_alias\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Outbound RPC Success Rate",
+      "title": "❗Presigs Left❗",
       "type": "stat"
     },
     {
@@ -1211,7 +1123,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
+        "x": 12,
         "y": 9
       },
       "id": 87,
@@ -1266,7 +1178,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Number of presignatures currently available in the local MPC signing pool. A value of 0 means the node cannot sign. Check reconfig status and MPC logs.",
+      "description": "Indicates whether Guardian is enabled and reachable.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1285,7 +1197,92 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "bool"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 9
+      },
+      "id": 51,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_guardian_enabled{alias=\"$hashi_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "❗Guardian Enabled | Online❗",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Indicates whether the local Guardian limiter has lost synchronization with the Guardian. 0 means in sync; 1 means drift detected and requires investigation or restart.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "True"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "False"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#ffffff",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "bool"
         },
         "overrides": []
       },
@@ -1295,10 +1292,10 @@
         "x": 20,
         "y": 9
       },
-      "id": 86,
+      "id": 105,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
+        "colorMode": "background",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1321,13 +1318,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_presig_pool_remaining{alias=\"$hashi_alias\"}",
+          "expr": "hashi_guardian_limiter_drifted{alias=\"$hashi_alias\"}",
+          "hide": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "❗Presigs Left❗",
+      "title": "Guardian  Limiter Synced",
       "type": "stat"
     },
     {
@@ -1408,7 +1406,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 0,
         "y": 13
@@ -1501,7 +1499,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 8,
         "y": 13
@@ -1595,7 +1593,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 16,
         "y": 13
@@ -1628,7 +1626,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kyoto ₿ Height",
+      "title": "Kyoto ₿ Block Height",
       "type": "timeseries"
     },
     {
@@ -1687,11 +1685,11 @@
               "options": {
                 "0": {
                   "index": 0,
-                  "text": "✅"
+                  "text": "🟩"
                 },
                 "1": {
                   "index": 1,
-                  "text": "⚠️"
+                  "text": "🟥"
                 }
               },
               "type": "value"
@@ -1710,10 +1708,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 122,
       "options": {
@@ -1751,10 +1749,11 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "This node’s effective weight in the current MPC committee after committee weights are compressed into MPC shares.",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1765,7 +1764,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 5,
+            "fillOpacity": 10,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1780,7 +1779,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1789,33 +1788,37 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
+                "color": "red",
                 "value": null
+              },
+              {
+                "color": "#ffffff",
+                "value": 1
               }
             ]
-          },
-          "unit": "Bps"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 8,
-        "y": 21
+        "y": 22
       },
-      "id": 103,
+      "id": 148,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "hideZeros": false,
@@ -1831,37 +1834,16 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "sum(\n  rate(\n    hashi_bytes_received_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)\n+\nsum(\n  rate(\n    hashi_bytes_sent_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "exemplar": false,
+          "expr": "hashi_mpc_party_reduced_weight{alias=\"$hashi_alias\"}",
           "hide": false,
-          "legendFormat": "total",
+          "instant": false,
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "sum(\n  rate(\n    hashi_bytes_received_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "received",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "sum(\n  rate(\n    hashi_bytes_sent_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
-          "hide": false,
-          "legendFormat": "sent",
-          "range": true,
-          "refId": "C"
         }
       ],
-      "title": "Hashi Traffic Rate",
+      "title": "MPC Reduced Weight",
       "type": "timeseries"
     },
     {
@@ -1869,10 +1851,11 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1907,7 +1890,6 @@
               "mode": "off"
             }
           },
-          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1922,18 +1904,18 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 16,
-        "y": 21
+        "y": 22
       },
-      "id": 57,
+      "id": 158,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "hideZeros": false,
@@ -1949,14 +1931,13 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "increase(\n  hashi_kyoto_warnings_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
-          "hide": false,
-          "legendFormat": "{{type}}",
+          "expr": "rate(\n  hashi_kyoto_blocks_received_total{\n    alias=\"$hashi_alias\"\n  }[$__rate_interval]\n)",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Kyoto Warnings by Type",
+      "title": "Kyoto ₿ Block Catch-Up Rate",
       "type": "timeseries"
     },
     {
@@ -2002,7 +1983,6 @@
               "mode": "off"
             }
           },
-          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2017,104 +1997,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 0,
-        "y": 29
-      },
-      "id": 89,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "(\n  sum by (operation, error_kind) (\n    increase(\n      hashi_leader_retries_total{\n        alias=\"$hashi_alias\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, error_kind) (\n  increase(\n    hashi_leader_retries_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
-          "hide": false,
-          "legendFormat": "{{operation}} - {{error_kind}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Leader Retries [$__range / 24h Fallback]",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 29
+        "y": 31
       },
       "id": 88,
       "options": {
@@ -2138,9 +2024,9 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  sum by (operation, status) (\n    rate(\n      hashi_sui_tx_submissions_total{\n        alias=\"$hashi_alias\"\n      }[$__rate_interval]\n    )\n  ) > 0\n)\nor\nsum by (operation, status) (\n  rate(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
+          "expr": "(\n  sum by (operation, status) (\n    increase(\n      hashi_sui_tx_submissions_total{\n        alias=\"$hashi_alias\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, status) (\n  increase(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{status}} - {{operation}}",
           "range": true,
           "refId": "A"
         },
@@ -2152,12 +2038,12 @@
           "editorMode": "code",
           "expr": "sum by (operation, status) (\n  rate(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
           "hide": true,
-          "legendFormat": "{{operation}} - {{status}}",
+          "legendFormat": "{{status}} - {{operation}}",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Sui TX Submission Rate [$__range / 24h Fallback]",
+      "title": "Sui TX Submissions [$__range / 24h Fallback]",
       "type": "timeseries"
     },
     {
@@ -2219,10 +2105,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
-        "x": 16,
-        "y": 29
+        "x": 8,
+        "y": 31
       },
       "id": 59,
       "options": {
@@ -2252,7 +2138,7 @@
           "refId": "A"
         }
       ],
-      "title": "Hashi Proposals by Type",
+      "title": "Hashi Proposals",
       "type": "timeseries"
     },
     {
@@ -2260,7 +2146,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2290,7 +2175,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2299,120 +2184,58 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
+                "color": "#ffffff",
                 "value": null
               }
             ]
           }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 37
-      },
-      "id": 145,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "sum by (path, status) (\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"client\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "{{status}} - {{path}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Outbound Request Rate",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "need_connections"
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
+            "properties": [
               {
-                "color": "#73BF69",
-                "value": null
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "potential_stale_tip"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
               }
             ]
           }
-        },
-        "overrides": []
+        ]
       },
       "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 37
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 31
       },
-      "id": 146,
+      "id": 57,
       "options": {
         "legend": {
           "calcs": [],
@@ -2434,13 +2257,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "sum by (path, status) (\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "{{status}} - {{path}}",
+          "expr": "increase(\n  hashi_kyoto_warnings_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
+          "hide": false,
+          "legendFormat": "{{type}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Inbound RPC Request Rate",
+      "title": "Kyoto Warnings",
       "type": "timeseries"
     },
     {
@@ -2448,7 +2272,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2478,7 +2301,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2487,162 +2310,7 @@
               "mode": "off"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#73BF69",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 47
-      },
-      "id": 68,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "sum by (path) (\n  rate(\n    hashi_request_latency_sum{\n      alias=\"$hashi_alias\",\n      role=\"client\"\n    }[$__rate_interval]\n  )\n)\n/\nsum by (path) (\n  rate(\n    hashi_request_latency_count{\n      alias=\"$hashi_alias\",\n      role=\"client\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Outbound RPC Average Latency",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#73BF69",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 47
-      },
-      "id": 127,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "sum by (path) (\n  rate(\n    hashi_request_latency_sum{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)\n/\nsum by (path) (\n  rate(\n    hashi_request_latency_count{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Inbound RPC Average Latency",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2657,15 +2325,277 @@
         "overrides": []
       },
       "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 40
+      },
+      "id": 89,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "(\n  sum by (operation, error_kind) (\n    increase(\n      hashi_leader_retries_total{\n        alias=\"$hashi_alias\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, error_kind) (\n  increase(\n    hashi_leader_retries_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
+          "hide": false,
+          "legendFormat": "{{operation}} - {{error_kind}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Leader Retries [$__range / 24h Fallback]",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 40
+      },
+      "id": 157,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_presig_pool_remaining{alias=\"$hashi_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "MPC Presig Pool Remaining",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 40
+      },
+      "id": 152,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_leader_items_in_backoff{\n  alias=\"$hashi_alias\"\n}",
+          "hide": false,
+          "legendFormat": "{{operation}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Leader Items in Backoff",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "No data"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeFromNow"
+        },
+        "overrides": []
+      },
+      "gridPos": {
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 56
+        "y": 49
       },
-      "id": 66,
+      "id": 150,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -2688,13 +2618,16 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_kyoto_reorgs_total{alias=\"$hashi_alias\"}",
+          "exemplar": false,
+          "expr": "hashi_latest_checkpoint_timestamp_ms{\n  alias=\"$hashi_alias\"\n}",
+          "hide": false,
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
+          "range": false,
+          "refId": "B"
         }
       ],
-      "title": "Kyoto ₿ Reorgs",
+      "title": "Latest Sui Checkpoint Update",
       "type": "stat"
     },
     {
@@ -2724,71 +2657,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 56
-      },
-      "id": 90,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "sum(hashi_proposals{alias=\"$hashi_alias\"})",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Active Proposals",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 56
+        "y": 49
       },
       "id": 72,
       "options": {
@@ -2851,10 +2720,10 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 12,
-        "y": 56
+        "x": 8,
+        "y": 49
       },
-      "id": 74,
+      "id": 64,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2869,7 +2738,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -2880,13 +2749,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_num_consumed_presigs{alias=\"$hashi_alias\"}",
+          "expr": "hashi_kyoto_consecutive_failures{alias=\"$hashi_alias\"}",
+          "hide": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Consumed Presigs",
+      "title": "Kyoto Connection Failures",
       "type": "stat"
     },
     {
@@ -2915,8 +2785,8 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
-        "y": 56
+        "x": 12,
+        "y": 49
       },
       "id": 65,
       "options": {
@@ -2979,10 +2849,10 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 20,
-        "y": 56
+        "x": 16,
+        "y": 49
       },
-      "id": 64,
+      "id": 66,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3008,14 +2878,77 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_kyoto_consecutive_failures{alias=\"$hashi_alias\"}",
-          "hide": false,
+          "expr": "hashi_kyoto_reorgs_total{alias=\"$hashi_alias\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Kyoto Failures",
+      "title": "Kyoto ₿ Reorgs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 49
+      },
+      "id": 74,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_num_consumed_presigs{alias=\"$hashi_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Presigs Consumed",
       "type": "stat"
     },
     {
@@ -3024,7 +2957,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 53
       },
       "id": 111,
       "panels": [],
@@ -3064,7 +2997,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 61
+        "y": 54
       },
       "id": 118,
       "options": {
@@ -3098,7 +3031,354 @@
           "refId": "A"
         }
       ],
-      "title": "Enabled | Online",
+      "title": "Guardian Enabled | Online",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "ercentage of outbound Guardian RPC calls completed successfully over the last 5 minutes. 100% means all calls succeeded.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.8
+              },
+              {
+                "color": "#ffffff",
+                "value": 0.99
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 54
+      },
+      "id": 112,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "(\n  sum(\n    rate(\n      hashi_guardian_rpc_total{\n        alias=\"$hashi_alias\",\n        outcome=\"ok\"\n      }[$__rate_interval]\n    )\n  )\n  /\n  sum(\n    rate(\n      hashi_guardian_rpc_total{\n        alias=\"$hashi_alias\"\n      }[$__rate_interval]\n    )\n  )\n)",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Guardian RPC Success Ratio",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "No data"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeFromNow"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 54
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "hashi_guardian_limiter_last_updated_at_seconds{\n  alias=\"$hashi_alias\"\n} * 1000",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Latest Guardian  Limiter Update",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Current withdrawal capacity available in the local Guardian limiter bucket.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyBTC"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 54
+      },
+      "id": 107,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_guardian_limiter_tokens_available{\n  alias=\"$hashi_alias\"\n} / 1e8",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Guardian Available Cap",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 54
+      },
+      "id": 117,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_guardian_current_committee_epoch{alias=\"$hashi_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Guardian Epoch",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 54
+      },
+      "id": 137,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_guardian_limiter_next_seq{\n  alias=\"$hashi_alias\"\n}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Next Withdrawal Sequence",
       "type": "stat"
     },
     {
@@ -3133,8 +3413,8 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 4,
-        "y": 61
+        "x": 0,
+        "y": 58
       },
       "id": 131,
       "options": {
@@ -3218,10 +3498,10 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 8,
-        "y": 61
+        "x": 4,
+        "y": 58
       },
-      "id": 105,
+      "id": 151,
       "options": {
         "colorMode": "background",
         "graphMode": "none",
@@ -3262,275 +3542,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 61
-      },
-      "id": 117,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_guardian_current_committee_epoch{alias=\"$hashi_alias\"}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Guardian Epoch",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "Average number of Guardian bootstrap attempts. A sustained non-zero rate may indicate repeated bootstrap retries or difficulty retrieving Guardian information.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 16,
-        "y": 61
-      },
-      "id": 104,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "rate(\n  hashi_guardian_bootstrap_attempts_total{\n    alias=\"$hashi_alias\"\n  }[$__rate_interval]\n)",
-          "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Guardian Bootstrap Attempts Rate",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 20,
-        "y": 61
-      },
-      "id": 137,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_guardian_limiter_next_seq{\n  alias=\"$hashi_alias\"\n}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Next Withdrawal Sequence",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "ercentage of outbound Guardian RPC calls completed successfully over the last 5 minutes. 100% means all calls succeeded.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.8
-              },
-              {
-                "color": "#ffffff",
-                "value": 0.99
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 65
-      },
-      "id": 112,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "(\n  sum(\n    rate(\n      hashi_guardian_rpc_total{\n        alias=\"$hashi_alias\",\n        outcome=\"ok\"\n      }[$__rate_interval]\n    )\n  )\n  /\n  sum(\n    rate(\n      hashi_guardian_rpc_total{\n        alias=\"$hashi_alias\"\n      }[$__rate_interval]\n    )\n  )\n)",
-          "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Guardian RPC Success Ratio",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3554,8 +3565,8 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 4,
-        "y": 65
+        "x": 8,
+        "y": 58
       },
       "id": 115,
       "options": {
@@ -3598,72 +3609,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Current withdrawal capacity available in the local Guardian limiter bucket.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          },
-          "unit": "currencyBTC"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 65
-      },
-      "id": 107,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_guardian_limiter_tokens_available{\n  alias=\"$hashi_alias\"\n} / 1e8",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Guardian Available Cap",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
       "description": "Maximum withdrawal capacity of the local Guardian limiter bucket, as configured by the Guardian.",
       "fieldConfig": {
         "defaults": {
@@ -3688,7 +3633,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 65
+        "y": 58
       },
       "id": 109,
       "options": {
@@ -3754,7 +3699,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 65
+        "y": 58
       },
       "id": 133,
       "options": {
@@ -3797,22 +3742,13 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Average number of Guardian bootstrap attempts. A sustained non-zero rate may indicate repeated bootstrap retries or difficulty retrieving Guardian information.",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "index": 0,
-                  "text": "No data"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3821,8 +3757,7 @@
                 "value": null
               }
             ]
-          },
-          "unit": "dateTimeFromNow"
+          }
         },
         "overrides": []
       },
@@ -3830,12 +3765,12 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 65
+        "y": 58
       },
-      "id": 18,
+      "id": 104,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -3847,7 +3782,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value",
+        "textMode": "auto",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -3858,16 +3793,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "hashi_guardian_limiter_last_updated_at_seconds{\n  alias=\"$hashi_alias\"\n} * 1000",
+          "expr": "rate(\n  hashi_guardian_bootstrap_attempts_total{\n    alias=\"$hashi_alias\"\n  }[$__rate_interval]\n)",
           "hide": false,
-          "instant": true,
           "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Latest Guardian  Limiter Update",
+      "title": "Guardian Bootstrap Attempts Rate",
       "type": "stat"
     },
     {
@@ -3931,7 +3864,7 @@
         "h": 10,
         "w": 8,
         "x": 0,
-        "y": 69
+        "y": 62
       },
       "id": 110,
       "options": {
@@ -4072,7 +4005,7 @@
         "h": 10,
         "w": 8,
         "x": 8,
-        "y": 69
+        "y": 62
       },
       "id": 116,
       "options": {
@@ -4160,13 +4093,29 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "unavailable - get_guardian_info"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 69
+        "y": 62
       },
       "id": 114,
       "options": {
@@ -4210,6 +4159,140 @@
         }
       ],
       "title": "Guardian RPC Call Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-1}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "skipped"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 72
+      },
+      "id": 139,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "increase(\n  hashi_guardian_limiter_anchor_events_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
+          "legendFormat": "total",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "increase(\n  hashi_guardian_limiter_apply_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
+          "hide": false,
+          "legendFormat": "applied",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "increase(\n  hashi_guardian_limiter_anchor_events_skipped_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
+          "hide": false,
+          "legendFormat": "skipped",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Guardian Limiter Anchor Events",
       "type": "timeseries"
     },
     {
@@ -4271,8 +4354,8 @@
       "gridPos": {
         "h": 10,
         "w": 8,
-        "x": 0,
-        "y": 79
+        "x": 8,
+        "y": 72
       },
       "id": 136,
       "options": {
@@ -4339,112 +4422,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 8,
-        "x": 8,
-        "y": 79
-      },
-      "id": 139,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "increase(\n  hashi_guardian_limiter_anchor_events_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
-          "legendFormat": "applied",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "increase(\n  hashi_guardian_limiter_anchor_events_skipped_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
-          "hide": false,
-          "legendFormat": "skipped",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Guardian Limiter Anchor Events",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -4466,13 +4443,29 @@
           },
           "unit": "s"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "get_guardian_info - unavailable"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 79
+        "y": 72
       },
       "id": 113,
       "options": {
@@ -4497,7 +4490,7 @@
           },
           "editorMode": "code",
           "expr": "sum by (method, outcome) (\n  rate(\n    hashi_guardian_rpc_duration_seconds_sum{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)\n/\nsum by (method, outcome) (\n  rate(\n    hashi_guardian_rpc_duration_seconds_count{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
-          "legendFormat": "{{method}} - {{outcome}}",
+          "legendFormat": "{{outcome}} - {{method}}",
           "range": true,
           "refId": "A"
         }
@@ -4511,7 +4504,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 89
+        "y": 82
       },
       "id": 91,
       "panels": [],
@@ -4550,7 +4543,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 90
+        "y": 83
       },
       "id": 71,
       "options": {
@@ -4615,7 +4608,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 90
+        "y": 83
       },
       "id": 101,
       "options": {
@@ -4679,7 +4672,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 90
+        "y": 83
       },
       "id": 46,
       "options": {
@@ -4713,7 +4706,7 @@
           "refId": "A"
         }
       ],
-      "title": "Deposits Queue",
+      "title": "Deposits Queue Size",
       "type": "stat"
     },
     {
@@ -4743,7 +4736,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 90
+        "y": 83
       },
       "id": 61,
       "options": {
@@ -4777,7 +4770,7 @@
           "refId": "A"
         }
       ],
-      "title": "Withdrawals Queue",
+      "title": "Withdrawals Queue Size",
       "type": "stat"
     },
     {
@@ -4807,7 +4800,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 90
+        "y": 83
       },
       "id": 82,
       "options": {
@@ -4871,7 +4864,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 90
+        "y": 83
       },
       "id": 81,
       "options": {
@@ -4967,9 +4960,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
-        "y": 94
+        "y": 87
       },
       "id": 134,
       "options": {
@@ -5073,9 +5066,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 94
+        "w": 8,
+        "x": 8,
+        "y": 87
       },
       "id": 135,
       "options": {
@@ -5163,7 +5156,6 @@
               "mode": "off"
             }
           },
-          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -5179,111 +5171,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 102
-      },
-      "id": 47,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_deposit_request_confirmations{alias=\"$hashi_alias\"}",
-          "legendFormat": "{{status}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Pending Deposits by BTC 🟨  Confirmations",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "^6_plus$",
-            "renamePattern": ">6"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 102
+        "w": 8,
+        "x": 16,
+        "y": 87
       },
       "id": 84,
       "options": {
@@ -5313,7 +5203,141 @@
           "refId": "A"
         }
       ],
-      "title": "UTXO Pool ₿ Value by Status",
+      "title": "UTXO Pool ₿ Value",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^6_plus$",
+            "renamePattern": ">6"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "not_found"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffffff",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 95
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_deposit_request_confirmations{alias=\"$hashi_alias\"}",
+          "legendFormat": "{{status}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Pending Deposits by ₿ Block  Confirmations",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -5384,103 +5408,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 110
-      },
-      "id": 79,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "hashi_withdrawal_queue_size{alias=\"$hashi_alias\"}",
-          "legendFormat": "{{status}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Withdrawal Queue Size by Status",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 110
+        "w": 8,
+        "x": 8,
+        "y": 95
       },
       "id": 83,
       "options": {
@@ -5523,16 +5453,424 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 95
+      },
+      "id": 79,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(hashi_withdrawal_queue_size{alias=\"$hashi_alias\"})",
+          "hide": false,
+          "legendFormat": "total",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_withdrawal_queue_size{alias=\"$hashi_alias\"}",
+          "legendFormat": "{{status}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Withdrawal Queue Size by Status",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 103
+      },
+      "id": 149,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_treasury_supply{alias=\"$hashi_alias\", coin_type=\"BTC\"} / 100000000",
+          "legendFormat": "{{status}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Hashi Treasury ₿ Supply",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^6_plus$",
+            "renamePattern": ">6"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 103
+      },
+      "id": 159,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_deposit_queue_size{alias=\"$hashi_alias\"}",
+          "legendFormat": "{{status}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Deposits Queue Size",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "^6_plus$",
+            "renamePattern": ">6"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 103
+      },
+      "id": 160,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (cache) (\n  rate(\n    hashi_deposit_lookup_cache_requests_total{\n      alias=\"$hashi_alias\",\n      result=\"hit\"\n    }[$__range]\n  )\n)\n/\nsum by (cache) (\n  rate(\n    hashi_deposit_lookup_cache_requests_total{\n      alias=\"$hashi_alias\"\n    }[$__range]\n  )\n)",
+          "hide": false,
+          "legendFormat": "{{cache}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Deposit Lookup Cache Hit Rate",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 118
+        "y": 111
       },
-      "id": 93,
+      "id": 155,
       "panels": [],
-      "title": "Hashi Node [System Settings]",
+      "title": "Hashi Node [RPC Traffic, Latency & Throughput]",
       "type": "row"
     },
     {
@@ -5543,45 +5881,74 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
+                "color": "#73BF69",
                 "value": null
               }
             ]
           },
-          "unit": "bool"
+          "unit": "Bps"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 12,
+        "h": 9,
+        "w": 8,
         "x": 0,
-        "y": 119
+        "y": 112
       },
-      "id": 95,
+      "id": 103,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "11.5.1",
       "targets": [
@@ -5591,24 +5958,534 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_package_version_enabled{alias=\"$hashi_alias\"}",
+          "expr": "sum(\n  rate(\n    hashi_bytes_received_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)\n+\nsum(\n  rate(\n    hashi_bytes_sent_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": false,
+          "legendFormat": "total",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum(\n  rate(\n    hashi_bytes_received_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "legendFormat": "received",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(\n  rate(\n    hashi_bytes_sent_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": false,
+          "legendFormat": "sent",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "Traffic Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 112
+      },
+      "id": 153,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(hashi_inflight_requests{alias=\"$hashi_alias\"})",
+          "hide": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Package Version Enabled",
-      "type": "stat"
+      "title": "RPC Requests In Flight",
+      "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 112
+      },
+      "id": 145,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "legendFormat": "total",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": false,
+          "legendFormat": "inbound",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum(\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"client\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": false,
+          "legendFormat": "outbound",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "RPC Request Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 121
+      },
+      "id": 127,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method) (\n  label_replace(\n    rate(\n      hashi_request_latency_sum{\n        alias=\"$hashi_alias\",\n        role=\"server\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)\n/\nsum by (method) (\n  label_replace(\n    rate(\n      hashi_request_latency_count{\n        alias=\"$hashi_alias\",\n        role=\"server\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "legendFormat": "{{method}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (path) (\n  rate(\n    hashi_request_latency_sum{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)\n/\nsum by (path) (\n  rate(\n    hashi_request_latency_count{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{path}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Inbound RPC Average Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 121
+      },
+      "id": 146,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"server\",\n        status=\"ok\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": false,
+          "legendFormat": "OK — {{method}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method, status) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"server\",\n        status!=\"ok\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": false,
+          "legendFormat": "{{status}} — {{method}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method, status) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"server\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{status}} - {{method}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (path, status) (\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"server\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{status}} - {{path}}",
+          "range": true,
+          "refId": "F"
+        }
+      ],
+      "title": "Inbound RPC Request Rate by Method",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -5619,33 +6496,30 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "percentunit"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 12,
-        "y": 119
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 121
       },
-      "id": 37,
+      "id": 130,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showPercentChange": false,
-        "textMode": "name",
-        "wideLayout": true
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "11.5.1",
       "targets": [
@@ -5655,24 +6529,288 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_package_version_enabled{alias=\"$hashi_alias\"}",
-          "legendFormat": "{{version}}",
+          "exemplar": false,
+          "expr": "(\n  (\n    sum(\n      rate(\n        hashi_requests{\n          alias=\"$hashi_alias\",\n          role=\"server\",\n          status=\"ok\"\n        }[$__rate_interval]\n      )\n    )\n    /\n    sum(\n      rate(\n        hashi_requests{\n          alias=\"$hashi_alias\",\n          role=\"server\"\n        }[$__rate_interval]\n      )\n    )\n  )\n  and on()\n  (\n    sum(\n      rate(\n        hashi_requests{\n          alias=\"$hashi_alias\",\n          role=\"server\"\n        }[$__rate_interval]\n      )\n    ) > 0\n  )\n)\nor vector(1)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Inbound RPC Success Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 130
+      },
+      "id": 68,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method) (\n  label_replace(\n    rate(\n      hashi_request_latency_sum{\n        alias=\"$hashi_alias\",\n        role=\"client\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)\n/\nsum by (method) (\n  label_replace(\n    rate(\n      hashi_request_latency_count{\n        alias=\"$hashi_alias\",\n        role=\"client\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "legendFormat": "{{path}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Package Version",
-      "type": "stat"
+      "title": "Outbound RPC Average Latency",
+      "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 130
+      },
+      "id": 154,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\",\n        status=\"ok\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": false,
+          "legendFormat": "OK — {{method}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method, status) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\",\n        status!=\"ok\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": false,
+          "legendFormat": "{{status}} — {{method}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (path, status) (\n  rate(\n    hashi_requests{\n      alias=\"$hashi_alias\",\n      role=\"client\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{status}} - {{path}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (method, status) (\n  label_replace(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\"\n      }[$__rate_interval]\n    ),\n    \"method\",\n    \"$1\",\n    \"path\",\n    \"(?:.*[/.])?([^/.]+)$\"\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{status}} - {{method}}",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Outbound RPC Request Rate by Method",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -5683,33 +6821,30 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "percentunit"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 0,
-        "y": 122
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 130
       },
-      "id": 100,
+      "id": 156,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showPercentChange": false,
-        "textMode": "name",
-        "wideLayout": true
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "11.5.1",
       "targets": [
@@ -5720,213 +6855,16 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "uptime{alias=\"$hashi_alias\"}",
-          "instant": true,
-          "legendFormat": "{{bitcoin_chain_id}}",
-          "range": false,
-          "refId": "A"
+          "expr": "(\n  sum(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\",\n        status=\"ok\"\n      }[$__rate_interval]\n    )\n  )\n  /\n  sum(\n    rate(\n      hashi_requests{\n        alias=\"$hashi_alias\",\n        role=\"client\"\n      }[$__rate_interval]\n    )\n  )\n)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "Bitcoin Chain ID",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 12,
-        "y": 122
-      },
-      "id": 97,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "name",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "uptime{alias=\"$hashi_alias\"}",
-          "instant": true,
-          "legendFormat": "{{hashi_object_id}}",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Object ID",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 0,
-        "y": 125
-      },
-      "id": 99,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "name",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "uptime{alias=\"$hashi_alias\"}",
-          "instant": true,
-          "legendFormat": "{{sui_chain_id}}",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Sui Chain ID",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#ffffff",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 12,
-        "x": 12,
-        "y": 125
-      },
-      "id": 96,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "name",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "uptime{alias=\"$hashi_alias\"}",
-          "instant": true,
-          "legendFormat": "{{package_id}}",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Package ID",
-      "type": "stat"
+      "title": "Outbound RPC Success Rate",
+      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -5934,7 +6872,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 128
+        "y": 139
       },
       "id": 128,
       "panels": [],
@@ -6000,10 +6938,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 0,
-        "y": 129
+        "y": 140
       },
       "id": 92,
       "options": {
@@ -6108,10 +7046,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 8,
-        "y": 129
+        "y": 140
       },
       "id": 140,
       "options": {
@@ -6216,10 +7154,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 16,
-        "y": 129
+        "y": 140
       },
       "id": 142,
       "options": {
@@ -6323,10 +7261,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 0,
-        "y": 137
+        "y": 149
       },
       "id": 125,
       "options": {
@@ -6455,10 +7393,10 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 8,
-        "y": 137
+        "y": 149
       },
       "id": 141,
       "options": {
@@ -6562,10 +7500,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 8,
         "x": 16,
-        "y": 137
+        "y": 149
       },
       "id": 144,
       "options": {
@@ -6617,7 +7555,413 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 145
+        "y": 158
+      },
+      "id": 93,
+      "panels": [],
+      "title": "Hashi Node [System Settings]",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bool"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 159
+      },
+      "id": 95,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_package_version_enabled{alias=\"$hashi_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Package Version Enabled",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 159
+      },
+      "id": 37,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "hashi_package_version_enabled{alias=\"$hashi_alias\"}",
+          "legendFormat": "{{version}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Package Version",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 162
+      },
+      "id": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "uptime{alias=\"$hashi_alias\"}",
+          "instant": true,
+          "legendFormat": "{{bitcoin_chain_id}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Bitcoin Chain ID",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 162
+      },
+      "id": 97,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "uptime{alias=\"$hashi_alias\"}",
+          "instant": true,
+          "legendFormat": "{{hashi_object_id}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Object ID",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 165
+      },
+      "id": 99,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "uptime{alias=\"$hashi_alias\"}",
+          "instant": true,
+          "legendFormat": "{{sui_chain_id}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Sui Chain ID",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 165
+      },
+      "id": 96,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "uptime{alias=\"$hashi_alias\"}",
+          "instant": true,
+          "legendFormat": "{{package_id}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Package ID",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 168
       },
       "id": 34,
       "panels": [],
@@ -6651,7 +7995,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 146
+        "y": 169
       },
       "id": 1,
       "options": {
@@ -6717,7 +8061,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 146
+        "y": 169
       },
       "id": 4,
       "options": {
@@ -6786,7 +8130,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 146
+        "y": 169
       },
       "id": 3,
       "options": {
@@ -6856,7 +8200,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 146
+        "y": 169
       },
       "id": 14,
       "options": {
@@ -6925,7 +8269,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 146
+        "y": 169
       },
       "id": 7,
       "options": {
@@ -6994,7 +8338,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 146
+        "y": 169
       },
       "id": 8,
       "options": {
@@ -7059,7 +8403,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 150
+        "y": 173
       },
       "id": 13,
       "options": {
@@ -7124,7 +8468,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 150
+        "y": 173
       },
       "id": 138,
       "options": {
@@ -7210,7 +8554,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 150
+        "y": 173
       },
       "id": 56,
       "options": {
@@ -7279,7 +8623,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 150
+        "y": 173
       },
       "id": 6,
       "options": {
@@ -7349,7 +8693,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 150
+        "y": 173
       },
       "id": 10,
       "options": {
@@ -7432,7 +8776,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 150
+        "y": 173
       },
       "id": 5,
       "options": {
@@ -7498,7 +8842,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 154
+        "y": 177
       },
       "id": 26,
       "options": {
@@ -7562,7 +8906,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 154
+        "y": 177
       },
       "id": 30,
       "options": {
@@ -7630,7 +8974,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 154
+        "y": 177
       },
       "id": 21,
       "options": {
@@ -7698,7 +9042,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 154
+        "y": 177
       },
       "id": 15,
       "options": {
@@ -7766,7 +9110,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 154
+        "y": 177
       },
       "id": 16,
       "options": {
@@ -7834,7 +9178,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 154
+        "y": 177
       },
       "id": 17,
       "options": {
@@ -7932,7 +9276,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 158
+        "y": 181
       },
       "id": 85,
       "options": {
@@ -8061,7 +9405,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 158
+        "y": 181
       },
       "id": 31,
       "options": {
@@ -8156,7 +9500,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 166
+        "y": 189
       },
       "id": 28,
       "options": {
@@ -8275,7 +9619,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 166
+        "y": 189
       },
       "id": 19,
       "options": {
@@ -8406,7 +9750,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 174
+        "y": 197
       },
       "id": 33,
       "options": {
@@ -8467,7 +9811,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 174
+        "y": 197
       },
       "id": 32,
       "options": {
@@ -8531,7 +9875,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 174
+        "y": 197
       },
       "id": 27,
       "options": {
@@ -8596,7 +9940,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 174
+        "y": 197
       },
       "id": 20,
       "options": {
@@ -8661,7 +10005,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 178
+        "y": 201
       },
       "id": 29,
       "options": {
@@ -8727,7 +10071,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 178
+        "y": 201
       },
       "id": 25,
       "options": {
@@ -8791,7 +10135,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 178
+        "y": 201
       },
       "id": 24,
       "options": {
@@ -8900,6 +10244,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 23,
+  "version": 66,
   "weekStart": ""
 }
