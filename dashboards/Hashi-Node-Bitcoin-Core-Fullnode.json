@@ -2280,8 +2280,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -2375,8 +2374,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -2470,8 +2468,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -2565,8 +2562,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -2626,8 +2622,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -2690,8 +2685,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -2754,8 +2748,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -2818,8 +2811,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -2882,8 +2874,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -2946,8 +2937,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -3025,8 +3015,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "#ffffff",
@@ -3095,8 +3084,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "#ffffff",
@@ -3180,8 +3168,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "#ffffff",
@@ -3250,8 +3237,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -3315,8 +3301,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -3380,8 +3365,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -3445,8 +3429,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "#EAB839",
@@ -3521,8 +3504,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -3587,8 +3569,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -3653,8 +3634,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -3719,8 +3699,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -3795,8 +3774,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -3897,8 +3875,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4038,8 +4015,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           }
@@ -4132,8 +4108,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           }
@@ -4238,8 +4213,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4332,8 +4306,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4437,8 +4410,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -4511,8 +4483,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               },
               {
                 "color": "red",
@@ -4580,8 +4551,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -4645,8 +4615,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4709,8 +4678,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4773,8 +4741,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4837,8 +4804,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4935,8 +4901,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5029,8 +4994,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5123,8 +5087,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5225,8 +5188,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5328,8 +5290,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5422,8 +5383,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5504,8 +5464,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -5569,8 +5528,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5633,8 +5591,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5699,8 +5656,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5765,8 +5721,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5831,8 +5786,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5944,8 +5898,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6052,8 +6005,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6160,8 +6112,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6267,8 +6218,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6374,8 +6324,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6506,8 +6455,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -6593,8 +6541,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -6659,8 +6606,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -6723,8 +6669,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -6793,8 +6738,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -6862,8 +6806,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -6931,8 +6874,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -7000,8 +6942,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -7065,8 +7006,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -7147,8 +7087,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -7216,8 +7155,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -7286,8 +7224,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -7369,8 +7306,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               },
               {
                 "color": "red",
@@ -7439,8 +7375,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -7504,8 +7439,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -7568,8 +7502,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "yellow",
@@ -7636,8 +7569,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               },
               {
                 "color": "red",
@@ -7704,8 +7636,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               },
               {
                 "color": "red",
@@ -7772,8 +7703,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               },
               {
                 "color": "red",
@@ -7874,8 +7804,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -8003,8 +7932,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -8097,8 +8025,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -8217,8 +8144,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -8347,8 +8273,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -8409,8 +8334,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -8473,8 +8397,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -8538,8 +8461,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -8602,8 +8524,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -8668,8 +8589,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           },
@@ -8733,8 +8653,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -8847,13 +8766,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
-  "uid": "cfs7kd6qetjwgc",
-  "version": 97,
+  "uid": "fbw7kd6retjwgp",
+  "version": 1,
   "weekStart": ""
 }
