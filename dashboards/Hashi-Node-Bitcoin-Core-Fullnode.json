@@ -2280,13 +2280,38 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
-          },
-          "unit": "s"
+          }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "service-error - /sui.hashi.v1alpha.MpcService/GetPartialSignatures"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 10,
@@ -2374,11 +2399,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
-          },
-          "unit": "s"
+          }
         },
         "overrides": []
       },
@@ -2468,7 +2493,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -2562,7 +2588,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -2622,7 +2649,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -2685,7 +2713,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -2748,7 +2777,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -2811,7 +2841,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -2874,7 +2905,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -2937,7 +2969,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -3015,7 +3048,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#ffffff",
@@ -3084,7 +3118,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#ffffff",
@@ -3168,7 +3203,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#ffffff",
@@ -3237,7 +3273,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -3301,7 +3338,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -3365,7 +3403,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -3429,7 +3468,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -3504,7 +3544,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -3569,7 +3610,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -3634,7 +3676,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -3699,7 +3742,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -3774,7 +3818,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -3875,7 +3920,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4015,7 +4061,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           }
@@ -4108,7 +4155,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           }
@@ -4213,7 +4261,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4306,7 +4355,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4410,7 +4460,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -4483,7 +4534,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               },
               {
                 "color": "red",
@@ -4551,7 +4603,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -4615,7 +4668,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4678,7 +4732,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4741,7 +4796,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4804,7 +4860,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4901,7 +4958,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -4994,7 +5052,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5087,7 +5146,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5188,7 +5248,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5290,7 +5351,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5383,7 +5445,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5464,7 +5527,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           },
@@ -5528,7 +5592,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5591,7 +5656,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5656,7 +5722,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5721,7 +5788,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5786,7 +5854,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "value": null
               }
             ]
           }
@@ -5898,7 +5967,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6005,7 +6075,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6112,7 +6183,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6218,7 +6290,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6324,7 +6397,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6455,7 +6529,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69"
+                "color": "#73BF69",
+                "value": null
               }
             ]
           },
@@ -6541,7 +6616,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -6606,7 +6682,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -6669,7 +6746,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -6738,7 +6816,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -6806,7 +6885,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -6874,7 +6954,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -6942,7 +7023,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           },
@@ -7006,7 +7088,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           },
@@ -7087,7 +7170,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -7155,7 +7239,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -7224,7 +7309,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -7306,7 +7392,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               },
               {
                 "color": "red",
@@ -7375,7 +7462,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           },
@@ -7439,7 +7527,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -7502,7 +7591,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -7569,7 +7659,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               },
               {
                 "color": "red",
@@ -7636,7 +7727,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               },
               {
                 "color": "red",
@@ -7703,7 +7795,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               },
               {
                 "color": "red",
@@ -7804,7 +7897,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -7932,7 +8026,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -8025,7 +8120,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -8144,7 +8240,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -8273,7 +8370,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -8334,7 +8432,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -8397,7 +8496,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -8461,7 +8561,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -8524,7 +8625,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           },
@@ -8589,7 +8691,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           },
@@ -8653,7 +8756,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow"
+                "color": "yellow",
+                "value": null
               }
             ]
           }
@@ -8773,6 +8877,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
