@@ -5902,7 +5902,7 @@
       },
       "id": 128,
       "panels": [],
-      "title": "Hashi Node [MPC Protocol Durations for $__range or 24h Fallback]",
+      "title": "Hashi Node [MPC Protocol Durations for $__range / 24h Fallback]",
       "type": "row"
     },
     {
@@ -8864,6 +8864,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }
