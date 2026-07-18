@@ -3027,6 +3027,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Indicates whether the local Guardian limiter has lost synchronization with the Guardian.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3037,7 +3038,11 @@
               "options": {
                 "0": {
                   "index": 0,
-                  "text": "No data"
+                  "text": "True"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "False"
                 }
               },
               "type": "value"
@@ -3047,12 +3052,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
+                "color": "red",
                 "value": null
+              },
+              {
+                "color": "#ffffff",
+                "value": 0
               }
             ]
           },
-          "unit": "dateTimeFromNow"
+          "unit": "bool"
         },
         "overrides": []
       },
@@ -3062,9 +3071,9 @@
         "x": 4,
         "y": 54
       },
-      "id": 18,
+      "id": 151,
       "options": {
-        "colorMode": "value",
+        "colorMode": "background",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -3077,7 +3086,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value",
+        "textMode": "auto",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -3088,16 +3097,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "hashi_guardian_limiter_last_updated_at_seconds{\n  alias=\"$hashi_alias\"\n} * 1000",
+          "expr": "hashi_guardian_limiter_drifted{alias=\"$hashi_alias\"}",
           "hide": false,
-          "instant": true,
           "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Latest Guardian  Limiter Update",
+      "title": "Guardian  Limiter Synced",
       "type": "stat"
     },
     {
@@ -3448,7 +3455,6 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "Indicates whether the local Guardian limiter has lost synchronization with the Guardian.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3459,11 +3465,7 @@
               "options": {
                 "0": {
                   "index": 0,
-                  "text": "True"
-                },
-                "1": {
-                  "index": 1,
-                  "text": "False"
+                  "text": "No data"
                 }
               },
               "type": "value"
@@ -3473,16 +3475,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
-              },
-              {
                 "color": "#ffffff",
-                "value": 0
+                "value": null
               }
             ]
           },
-          "unit": "bool"
+          "unit": "dateTimeFromNow"
         },
         "overrides": []
       },
@@ -3492,9 +3490,9 @@
         "x": 4,
         "y": 58
       },
-      "id": 151,
+      "id": 18,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -3507,7 +3505,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -3518,14 +3516,16 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_guardian_limiter_drifted{alias=\"$hashi_alias\"}",
+          "exemplar": false,
+          "expr": "hashi_guardian_limiter_last_updated_at_seconds{\n  alias=\"$hashi_alias\"\n} * 1000",
           "hide": false,
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
+          "range": false,
+          "refId": "B"
         }
       ],
-      "title": "Guardian  Limiter Synced",
+      "title": "Latest Guardian  Limiter Update",
       "type": "stat"
     },
     {
@@ -8030,7 +8030,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "s"
         },
         "overrides": []
       },
@@ -8040,10 +8041,10 @@
         "x": 4,
         "y": 169
       },
-      "id": 4,
+      "id": 13,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -8055,7 +8056,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "name",
+        "textMode": "value",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -8066,13 +8067,13 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "bitcoin_node_info{alias=\"$bitcoin_alias\"}",
-          "legendFormat": "{{chain}}",
+          "expr": "max(bitcoin_node_uptime_seconds{alias=\"$bitcoin_alias\"})",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Chain",
+      "title": "Uptime",
       "type": "stat"
     },
     {
@@ -8371,8 +8372,7 @@
                 "value": null
               }
             ]
-          },
-          "unit": "s"
+          }
         },
         "overrides": []
       },
@@ -8382,72 +8382,7 @@
         "x": 0,
         "y": 173
       },
-      "id": 13,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-1}"
-          },
-          "editorMode": "code",
-          "expr": "max(bitcoin_node_uptime_seconds{alias=\"$bitcoin_alias\"})",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Uptime",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "yellow",
-                "value": null
-              }
-            ]
-          },
-          "unit": "dateTimeFromNow"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 173
-      },
-      "id": 138,
+      "id": 4,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -8462,7 +8397,7 @@
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "value",
+        "textMode": "name",
         "wideLayout": true
       },
       "pluginVersion": "11.5.1",
@@ -8473,36 +8408,19 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "bitcoin_node_latest_block_timestamp_seconds{alias=\"$bitcoin_alias\"} * 1000",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
+          "expr": "bitcoin_node_info{alias=\"$bitcoin_alias\"}",
+          "legendFormat": "{{chain}}",
+          "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "clamp_min(\n  time() -\n  bitcoin_node_latest_block_timestamp_seconds{\n    alias=\"$bitcoin_alias\"\n  },\n  0\n)",
-          "hide": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
         }
       ],
-      "title": "Latest Block Time",
+      "title": "Chain",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-1}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -8530,7 +8448,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 8,
+        "x": 4,
         "y": 173
       },
       "id": 56,
@@ -8556,7 +8474,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
           "expr": "bitcoin_node_block_height{\n  alias=\"$bitcoin_alias\"\n}\n/\nbitcoin_node_header_height{\n  alias=\"$bitcoin_alias\"\n}",
@@ -8571,7 +8489,71 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-1}"
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 173
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "bitcoin_node_block_height{alias=\"$bitcoin_alias\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Latest Block Height",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -8625,7 +8607,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
           "expr": "bitcoin_node_feature_enabled{alias=\"$bitcoin_alias\", feature=\"txindex\"}",
@@ -8640,7 +8622,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-1}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -8695,7 +8677,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
           "expr": "bitcoin_node_index_synced{alias=\"$bitcoin_alias\", index=\"blockfilterindex\"}",
@@ -8710,7 +8692,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-1}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -8778,7 +8760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
           "expr": "bitcoin_node_pruned{alias=\"$bitcoin_alias\"}",
@@ -8788,6 +8770,88 @@
         }
       ],
       "title": "Is Archive",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeFromNow"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 177
+      },
+      "id": 138,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "bitcoin_node_latest_block_timestamp_seconds{alias=\"$bitcoin_alias\"} * 1000",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "clamp_min(\n  time() -\n  bitcoin_node_latest_block_timestamp_seconds{\n    alias=\"$bitcoin_alias\"\n  },\n  0\n)",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Latest Block Time",
       "type": "stat"
     },
     {
@@ -8818,7 +8882,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 0,
+        "x": 4,
         "y": 177
       },
       "id": 26,
@@ -8854,70 +8918,6 @@
         }
       ],
       "title": "Blockchain Size",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-1}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "yellow",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 177
-      },
-      "id": 30,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "bitcoin_node_block_height{alias=\"$bitcoin_alias\"}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Latest Block Height",
       "type": "stat"
     },
     {
@@ -9899,7 +9899,7 @@
           "refId": "A"
         }
       ],
-      "title": "Latest Block Transactions",
+      "title": "Latest Block TXs",
       "type": "stat"
     },
     {
@@ -9964,7 +9964,7 @@
           "refId": "A"
         }
       ],
-      "title": "Total Chain Transactions",
+      "title": "Total Chain TXs",
       "type": "stat"
     },
     {
@@ -10159,7 +10159,7 @@
           "refId": "A"
         }
       ],
-      "title": "Mempool Transactions",
+      "title": "Mempool TXs",
       "type": "stat"
     }
   ],
@@ -10234,6 +10234,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 80,
+  "version": 82,
   "weekStart": ""
 }
