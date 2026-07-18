@@ -6944,7 +6944,7 @@
           "editorMode": "code",
           "expr": "(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    ) > 0\n  )\n)\nor\n(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    ) > 0\n  )\n)",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
         },
@@ -7052,7 +7052,7 @@
           "editorMode": "code",
           "expr": "(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    ) > 0\n  )\n)\nor\n(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_reconfig_total_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    ) > 0\n  )\n)",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
         },
@@ -7398,7 +7398,7 @@
           },
           "editorMode": "code",
           "expr": "(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    ) > 0\n  )\n)\nor\n(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_end_reconfig_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    ) > 0\n  )\n)",
-          "legendFormat": "__auto",
+          "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
         },
@@ -7506,7 +7506,7 @@
           "editorMode": "code",
           "expr": "(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[$__range]\n      )\n    ) > 0\n  )\n)\nor\n(\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_sum{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n    /\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    )\n  )\n  and on (protocol)\n  (\n    sum by (protocol) (\n      increase(\n        hashi_mpc_rpc_handler_process_duration_seconds_count{\n          alias=\"$hashi_alias\"\n        }[24h]\n      )\n    ) > 0\n  )\n)",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
         },
@@ -10221,6 +10221,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 77,
+  "version": 78,
   "weekStart": ""
 }
