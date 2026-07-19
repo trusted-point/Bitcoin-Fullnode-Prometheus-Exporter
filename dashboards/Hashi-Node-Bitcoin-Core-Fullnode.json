@@ -4214,8 +4214,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4336,8 +4335,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4429,8 +4427,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#73BF69",
-                "value": null
+                "color": "#73BF69"
               }
             ]
           },
@@ -4519,8 +4516,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               },
               {
                 "color": "red",
@@ -4588,8 +4584,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           },
@@ -4653,8 +4648,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4717,8 +4711,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4781,8 +4774,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4845,8 +4837,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -4943,8 +4934,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "yellow",
-                "value": null
+                "color": "yellow"
               }
             ]
           }
@@ -5046,8 +5036,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5149,8 +5138,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5254,8 +5242,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5357,8 +5344,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -5491,8 +5477,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
-                "value": null
+                "color": "#ffffff"
               }
             ]
           }
@@ -10172,6 +10157,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 93,
+  "version": 94,
   "weekStart": ""
 }
