@@ -410,30 +410,16 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "index": 0,
-                  "text": "True"
-                },
-                "1": {
-                  "index": 1,
-                  "text": "False"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#ffffff",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
+                "color": "#ffffff",
                 "value": 1
               }
             ]
@@ -474,7 +460,7 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "hashi_paused{alias=\"$hashi_alias\"}",
+          "expr": "hashi_paused{alias=\"$hashi_alias\"} == bool 0",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -776,7 +762,7 @@
               },
               {
                 "color": "#ffffff",
-                "value": 0
+                "value": 1
               }
             ]
           },
@@ -1269,12 +1255,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "#fff6f7",
                 "value": null
               },
               {
-                "color": "#ffffff",
-                "value": 0
+                "color": "red",
+                "value": 1
               }
             ]
           },
@@ -3082,12 +3068,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "#ffffff",
                 "value": null
               },
               {
-                "color": "#ffffff",
-                "value": 0
+                "color": "red",
+                "value": 1
               }
             ]
           },
@@ -10238,6 +10224,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 104,
+  "version": 108,
   "weekStart": ""
 }
