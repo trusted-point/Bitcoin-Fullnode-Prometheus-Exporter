@@ -2004,14 +2004,26 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  sum by (operation, error_kind) (\n    increase(\n      hashi_leader_retries_total{\n        alias=\"$hashi_alias\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, error_kind) (\n  increase(\n    hashi_leader_retries_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
+          "expr": "sum by (operation, error_kind) (\n  increase(\n    hashi_leader_retries_total{\n      alias=\"$hashi_alias\"\n    }[$__range]\n  )\n)",
           "hide": false,
           "legendFormat": "{{operation}} - {{error_kind}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "(\n  sum by (operation, error_kind) (\n    increase(\n      hashi_leader_retries_total{\n        alias=\"$hashi_alias\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, error_kind) (\n  increase(\n    hashi_leader_retries_total{\n      alias=\"$hashi_alias\"\n    }[24h]\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{operation}} - {{error_kind}}",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "Leader Retries [$__range / 24h Fallback]",
+      "title": "Leader Retries [Selected Range]",
       "type": "timeseries"
     },
     {
@@ -2098,7 +2110,7 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  sum by (operation, status) (\n    increase(\n      hashi_sui_tx_submissions_total{\n        alias=\"$hashi_alias\",\n        status=\"success\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, status) (\n  increase(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status=\"success\"\n    }[24h]\n  )\n)",
+          "expr": "sum by (operation, status) (\n  increase(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status=\"success\"\n    }[$__range]\n  )\n)",
           "hide": false,
           "legendFormat": "{{status}} - {{operation}}",
           "range": true,
@@ -2110,7 +2122,7 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  sum by (operation, status) (\n    increase(\n      hashi_sui_tx_submissions_total{\n        alias=\"$hashi_alias\",\n        status!=\"success\"\n      }[$__range]\n    )\n  ) > 0\n)\nor\nsum by (operation, status) (\n  increase(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status!=\"success\"\n    }[24h]\n  )\n)",
+          "expr": "sum by (operation, status) (\n  increase(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status!=\"success\"\n    }[$__range]\n  )\n)",
           "hide": false,
           "legendFormat": "{{status}} - {{operation}}",
           "range": true,
@@ -2122,14 +2134,26 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "sum by (operation, status) (\n  rate(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\"\n    }[$__rate_interval]\n  )\n)",
+          "expr": "sum by (operation, status) (\n  rate(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status=\"success\"\n    }[$__rate_interval]\n  )\n)",
           "hide": true,
           "legendFormat": "{{status}} - {{operation}}",
           "range": true,
           "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-1}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (operation, status) (\n  rate(\n    hashi_sui_tx_submissions_total{\n      alias=\"$hashi_alias\",\n      status!=\"success\"\n    }[$__rate_interval]\n  )\n)",
+          "hide": true,
+          "legendFormat": "{{status}} - {{operation}}",
+          "range": true,
+          "refId": "D"
         }
       ],
-      "title": "Sui TX Submissions [$__range / 24h Fallback]",
+      "title": "Sui TXs [Selected Range]",
       "type": "timeseries"
     },
     {
@@ -5526,7 +5550,7 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  increase(\n    hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n    }[$__range]\n  ) > 0\n)\nor\nincrease(\n  hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n  }[24h]\n)",
+          "expr": "increase(\n  hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "A"
@@ -5537,14 +5561,14 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "increase(\n  hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
+          "expr": "(\n  increase(\n    hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n    }[$__range]\n  ) > 0\n)\nor\nincrease(\n  hashi_withdrawals_finalized_total{\n    alias=\"$hashi_alias\"\n  }[24h]\n)",
           "hide": true,
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Finalized Withdrawals [$__range / 24h Fallback]",
+      "title": "Finalized Withdrawals [Selected Range]",
       "type": "timeseries"
     },
     {
@@ -5831,7 +5855,7 @@
             "uid": "${DS_PROMETHEUS-1}"
           },
           "editorMode": "code",
-          "expr": "(\n  increase(\n    hashi_deposits_confirmed_total{\n    alias=\"$hashi_alias\"\n    }[$__range]\n  ) > 0\n)\nor\nincrease(\n  hashi_deposits_confirmed_total{\n    alias=\"$hashi_alias\"\n  }[24h]\n)",
+          "expr": "increase(\n  hashi_deposits_confirmed_total{\n    alias=\"$hashi_alias\"\n  }[$__range]\n)",
           "legendFormat": "{{status}}",
           "range": true,
           "refId": "A"
@@ -5849,7 +5873,7 @@
           "refId": "B"
         }
       ],
-      "title": "Confirmed Deposits [$__range / 24h Fallback]",
+      "title": "Confirmed Deposits [Selected Range]",
       "type": "timeseries"
     },
     {
@@ -10224,6 +10248,6 @@
   "timezone": "browser",
   "title": "Hashi Node & Bitcoin Core Fullnode",
   "uid": "fbw7kd6retjwgp",
-  "version": 108,
+  "version": 116,
   "weekStart": ""
 }
